@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Good Games · Ultimate Hat Tournament</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D62828;
+    --red-dark: #A41E1E;
+    --ink: #1A1A1A;
+    --paper: #FAF7F2;
+    --paper-2: #FFFFFF;
+    --line: #E7E1D8;
+    --mush: #E84B3C;
+    --lemon: #E5A823;
+    --fire: #6C5CE7;
+    --muted: #6B6660;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header ---------- */
+  header {
+    background: var(--red);
+    color: #fff;
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 3px solid var(--red-dark);
+  }
+  .header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { height: 38px; width: auto; display: block; }
+  @media (max-width: 720px){ .brand img { height: 32px; } }
+  nav { display: flex; gap: 22px; }
+  nav a {
+    color: #fff; text-decoration: none; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 1.02rem; text-transform: uppercase; letter-spacing: 0.05em;
+    opacity: 0.9; transition: opacity 0.15s;
+  }
+  nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+  @media (max-width: 720px){ nav { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 64px 0 40px; }
+  .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;
+    letter-spacing: 0.22em; font-weight: 600; color: var(--red);
+    font-size: 0.92rem; margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Archivo', sans-serif; font-weight: 900;
+    font-size: clamp(2.6rem, 7vw, 5rem); line-height: 0.95;
+    letter-spacing: -0.02em; text-transform: uppercase; max-width: 14ch;
+  }
+  .hero h1 em { color: var(--red); font-style: normal; }
+  .hero-sub {
+    margin-top: 18px; font-size: 1.18rem; color: var(--muted); max-width: 52ch;
+  }
+
+  /* ---------- Map ---------- */
+  .map-frame {
+    border: 2px solid var(--ink); border-radius: 14px; overflow: hidden;
+    height: 380px; background: var(--paper-2);
+  }
+  @media (max-width: 600px){ .map-frame { height: 300px; } }
+  .map-frame iframe { display: block; }
+  .map-link {
+    display: inline-block; margin-top: 14px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; font-size: 1.05rem;
+    color: var(--red); text-decoration: none;
+  }
+  .map-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ---------- Foreword ---------- */
+  .foreword {
+    background: var(--paper-2); border: 2px solid var(--ink); border-radius: 16px;
+    padding: 32px 36px; position: relative; max-width: 760px;
+  }
+  .fw-mark {
+    font-family: 'Archivo', sans-serif; font-weight: 900; color: var(--red);
+    font-size: 4rem; line-height: 0.5; height: 28px;
+  }
+  .foreword p { font-size: 1.18rem; line-height: 1.6; color: var(--ink); margin-top: 8px; }
+  .fw-sign {
+    margin-top: 18px; font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
+    color: var(--red); font-size: 1.05rem;
+  }
+
+  /* ---------- Countdown ---------- */
+  .countdown {
+    display: flex; align-items: center; gap: 26px;
+    background: var(--ink); color: var(--paper); border-radius: 16px;
+    padding: 26px 32px; margin-top: 28px; max-width: 760px;
+  }
+  .cd-num {
+    font-family: 'Archivo', sans-serif; font-weight: 900; color: var(--lemon);
+    font-size: clamp(3rem, 9vw, 4.4rem); line-height: 0.9; flex-shrink: 0;
+  }
+  .cd-lead {
+    font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 700; font-size: 1.15rem; color: #fff;
+  }
+  .cd-body p { color: #D8D3CC; margin-top: 6px; font-size: 1.02rem; }
+  .cd-body strong { color: var(--lemon); }
+  @media (max-width: 560px){ .countdown { flex-direction: column; align-items: flex-start; gap: 12px; text-align: left; } }
+
+  /* ---------- Section ---------- */
+  section { padding: 52px 0; }
+  .section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+  .section-head h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 900; text-transform: uppercase;
+    font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -0.01em; line-height: 1;
+  }
+  .section-head .rule { flex: 1; height: 3px; background: var(--ink); border-radius: 2px; }
+
+  /* ---------- Schedule ---------- */
+  .timeline { border-left: 3px solid var(--line); margin-left: 8px; }
+  .slot { position: relative; padding: 0 0 26px 28px; }
+  .slot::before {
+    content: ""; position: absolute; left: -9px; top: 4px;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--paper); border: 3px solid var(--red);
+  }
+  .slot.major::before { background: var(--red); }
+  .slot .time {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; font-size: 1.05rem; color: var(--red);
+  }
+  .slot .act { font-size: 1.08rem; font-weight: 500; }
+  .slot .det { color: var(--muted); font-size: 0.98rem; }
+
+  /* ---------- Name list ---------- */
+  .namelist {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 860px){ .namelist { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px){ .namelist { grid-template-columns: repeat(2, 1fr); } }
+  .namelist li {
+    background: var(--paper-2); border: 2px solid var(--ink);
+    border-radius: 10px; padding: 13px 16px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+    font-size: 1.12rem; letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .namelist li .badge {
+    width: 9px; height: 9px; border-radius: 50%; background: var(--red); flex-shrink: 0;
+  }
+
+  /* ---------- Bring ---------- */
+  .bring-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 640px; }
+  @media (max-width: 420px){ .bring-grid { grid-template-columns: 1fr; } }
+  .bring {
+    background: var(--paper-2); border: 2px solid var(--ink); border-radius: 14px;
+    padding: 26px 22px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
+  }
+  .bring .bnum {
+    font-family: 'Archivo', sans-serif; font-weight: 900; line-height: 1;
+    font-size: 1.5rem; color: #fff; background: var(--red);
+    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0;
+  }
+  .bring h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.04em; font-size: 1.22rem; line-height: 1.1;
+  }
+
+  /* ---------- Surprise ---------- */
+  .surprise {
+    background: var(--ink); color: var(--paper); border-radius: 18px;
+    padding: 44px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .surprise::before {
+    content: "★"; position: absolute; font-size: 14rem; opacity: 0.05;
+    top: -3rem; right: -1rem; color: var(--lemon);
+  }
+  .surprise .eyebrow { color: var(--lemon); }
+  .surprise h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 900; text-transform: uppercase;
+    font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1; margin-bottom: 14px;
+  }
+  .surprise p { max-width: 56ch; margin: 0 auto; font-size: 1.12rem; color: #D8D3CC; position: relative; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--red); color: #fff; padding: 40px 0; margin-top: 20px;
+  }
+  .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .foot-row a { color: #fff; font-weight: 600; text-decoration: none; }
+  .foot-row a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .foot-big {
+    font-family: 'Archivo', sans-serif; font-weight: 900; text-transform: uppercase;
+    font-size: 1.4rem; letter-spacing: 0.02em;
+  }
+  .note { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <div class="brand">
+      <span style="background:#fff; border-radius:8px; padding:5px 10px; display:inline-flex; align-items:center;">
+        <img src="goodgames-logo.png" alt="The Good Games">
+      </span>
+    </div>
+    <nav>
+      <a href="#where">Location</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#players">Who's In</a>
+      <a href="#bring">What to Bring</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-bottom: 8px;">
+    <div class="eyebrow">Ultimate Frisbee · June 28 · UoG Rugby Fields</div>
+    <h1>The Community <em>Hat</em> Tournament</h1>
+    <p class="hero-sub">Three teams. One field. A full day of spirited play. Here's who's registered so far and how the day runs.</p>
+  </section>
+
+  <!-- FOREWORD -->
+  <section id="foreword" style="padding-top: 24px;">
+    <div class="foreword">
+      <div class="fw-mark">“</div>
+      <p>Thanks everyone for signing up for the inaugural Good Games ultimate tournament! I hope that the day brings in some great weather for ultimate fun. I'm really excited for this event and what it means for the future of ultimate in the region, so I'm appreciative of all of you for helping get this off the ground! A big thank you as well to the volunteers from GUPA who are giving their time to help make this day run smoothly. We couldn't do it without you.</p>
+      <div class="fw-sign">Carlos, Tournament Organizer</div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN / TEASER -->
+  <section id="countdown" style="padding-top: 8px;">
+    <div class="countdown">
+      <div class="cd-num" id="cd-hours">48</div>
+      <div class="cd-body">
+        <div class="cd-lead">hours until the first pull</div>
+        <p>Can't wait that long? Drop by on <strong>Saturday</strong>, where we'll be running a learn-to-play clinic and fun disc games all day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="where" style="padding-top: 32px;">
+    <div class="section-head"><h2>Where to Find Us</h2><div class="rule"></div></div>
+    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:20px; max-width:60ch;">We'll be set up at the <strong style="color:var(--ink);">University of Guelph Rugby / Varsity Field</strong>, corner of East Ring Road and College Road. Look for The Good Games festival signage.</p>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps?q=University+of+Guelph+Varsity+Field,+East+Ring+Road,+Guelph,+ON&output=embed"
+        width="100%" height="100%" style="border:0;"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="University of Guelph Rugby Field"></iframe>
+    </div>
+    <a class="map-link" href="https://maps.app.goo.gl/LhCreVkVByfe6XUA8" target="_blank" rel="noopener">Open in Google Maps →</a>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule">
+    <div class="section-head"><h2>The Day</h2><div class="rule"></div></div>
+    <div class="timeline">
+      <div class="slot"><div class="time">10:00 – 10:10</div><div class="act">Welcome &amp; team intros</div></div>
+      <div class="slot major"><div class="time">10:10 – 10:55</div><div class="act">Round Robin · Game 1</div><div class="det">Mango vs Lemon &nbsp;·&nbsp; Guava rests</div></div>
+      <div class="slot major"><div class="time">10:55 – 11:40</div><div class="act">Round Robin · Game 2</div><div class="det">Mango vs Guava &nbsp;·&nbsp; Lemon rests</div></div>
+      <div class="slot major"><div class="time">11:40 – 12:25</div><div class="act">Round Robin · Game 3</div><div class="det">Lemon vs Guava &nbsp;·&nbsp; Mango rests</div></div>
+      <div class="slot"><div class="time">12:25 – 12:30</div><div class="act">Redraft for the final</div><div class="det">Third-place team splits across the two finalists, so everyone plays.</div></div>
+      <div class="slot major"><div class="time">12:30 – 1:50</div><div class="act">The Final</div><div class="det">Top two combined teams, bigger lines, 80 minutes.</div></div>
+      <div class="slot"><div class="time">1:50 – 2:00</div><div class="act">Wrap-up &amp; awards</div></div>
+    </div>
+  </section>
+
+  <!-- REGISTERED -->
+  <section id="players">
+    <div class="section-head"><h2>Who's In</h2><div class="rule"></div></div>
+    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:24px; max-width:56ch;">The roster so far. Teams get drafted on game day. For now, here's the crew lining up to play.</p>
+    <ul class="namelist" id="namelist"></ul>
+  </section>
+
+  <!-- BRING -->
+  <section id="bring">
+    <div class="section-head"><h2>What to Bring</h2><div class="rule"></div></div>
+    <div class="bring-grid">
+      <div class="bring"><div class="bnum">1</div><h3>Cleats</h3></div>
+      <div class="bring"><div class="bnum">2</div><h3>Dark &amp; Light Jersey</h3></div>
+      <div class="bring"><div class="bnum">3</div><h3>Water!</h3></div>
+      <div class="bring"><div class="bnum">4</div><h3>Positive Attitude</h3></div>
+    </div>
+  </section>
+
+  <!-- SURPRISE -->
+  <section>
+    <div class="surprise">
+      <div class="eyebrow">One more thing</div>
+      <h2>Expect the Unexpected</h2>
+      <p>We've got a twist planned that levels the playing field and rewards creativity over pure athleticism. Newer players will have their moments to shine. Come ready to play, laugh, and roll with whatever the day throws at you. You'll see.</p>
+    </div>
+  <!-- PARTNER -->
+  <section style="padding: 40px 0 20px; text-align:center;">
+    <div style="font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.18em; font-weight:600; color:var(--muted); font-size:0.9rem; margin-bottom:18px;">In partnership with</div>
+    <img src="gupa-logo.png" alt="GUPA, Guelph Ultimate Players Association" style="height:64px; width:auto;">
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>
+      <div class="foot-big">See you on the field.</div>
+      <div class="note" style="color:#FBD; opacity:0.9;">Sunday, June 28 · University of Guelph Rugby Fields · 10 AM</div>
+    </div>
+    <div><a href="https://www.thegood.games">www.thegood.games →</a></div>
+  </div>
+</footer>
+
+<script>
+  // Registered players: first name + last initial only, alphabetical
+  const players = [
+    "Adison O", "Braeden M", "Brian H", "Carlos L", "Clara T", "Connor M",
+    "Elvis C", "Eugene E", "Finn H", "Gabriel H", "Heather H", "Janet G",
+    "Jared R", "Jesse H", "Jihan G", "Judah C", "Karen B", "Karlie M",
+    "Kevin G", "Kevin S", "Kristin M", "Mandy L", "Matt S", "Max T",
+    "Meilin C", "Nate C", "Phillip G", "Rich E", "Rob L", "Rob S",
+    "Roselyn E", "Ryan K", "Simon T", "Terry L", "Wes A"
+  ].sort();
+
+  // Live countdown to first pull: Sunday June 28 2026, 10:00 AM (America/Toronto, EDT = UTC-4)
+  (function(){
+    const firstPull = new Date('2026-06-28T10:00:00-04:00');
+    const el = document.getElementById('cd-hours');
+    function tick(){
+      const now = new Date();
+      const hrs = Math.max(0, Math.round((firstPull - now) / 3600000));
+      if (el) el.textContent = hrs;
+    }
+    tick();
+    setInterval(tick, 60000);
+  })();
+  const list = document.getElementById('namelist');
+  players.forEach(name => {
+    const li = document.createElement('li');
+    const leaf = name === "Jesse H" ? ' <a href="https://canadianultimate.com/en_ca/p/2026-u20-rosters" target="_blank" rel="noopener" title="Team Canada U20, see the roster" style="margin-left:auto; text-decoration:none;">🍁</a>' : '';
+    li.innerHTML = `<span class="badge"></span>${name}${leaf}`;
+    list.appendChild(li);
+  });
+</script>
+
+</body>
+</html>
