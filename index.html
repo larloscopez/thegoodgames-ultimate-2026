@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Good Games · Ultimate Hat Tournament</title>
+<title>Ultimate at the Good Games</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -120,6 +120,26 @@
   .cd-body strong { color: var(--lemon); }
   @media (max-width: 560px){ .countdown { flex-direction: column; align-items: flex-start; gap: 12px; text-align: left; } }
 
+  /* ---------- Format ---------- */
+  .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 760px){ .format-grid { grid-template-columns: 1fr; max-width: 480px; } }
+  .fmt-card {
+    background: var(--paper-2); border: 2px solid var(--ink); border-radius: 16px;
+    padding: 24px 24px 26px;
+  }
+  .fmt-num {
+    font-family: 'Archivo', sans-serif; font-weight: 900; line-height: 1;
+    font-size: 1.4rem; color: #fff; background: var(--red);
+    min-width: 48px; height: 48px; padding: 0 12px; border-radius: 12px;
+    display: inline-grid; place-items: center; margin-bottom: 16px;
+  }
+  .fmt-card h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.03em; font-size: 1.35rem;
+    line-height: 1.05; margin-bottom: 8px;
+  }
+  .fmt-card p { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+
   /* ---------- Section ---------- */
   section { padding: 52px 0; }
   .section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; }
@@ -170,7 +190,7 @@
   @media (max-width: 420px){ .bring-grid { grid-template-columns: 1fr; } }
   .bring {
     background: var(--paper-2); border: 2px solid var(--ink); border-radius: 14px;
-    padding: 26px 22px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
+    padding: 26px 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
   }
   .bring .bnum {
     font-family: 'Archivo', sans-serif; font-weight: 900; line-height: 1;
@@ -181,6 +201,7 @@
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.04em; font-size: 1.22rem; line-height: 1.1;
   }
+  .bring p { color: var(--muted); font-size: 0.98rem; line-height: 1.5; }
 
   /* ---------- Surprise ---------- */
   .surprise {
@@ -222,10 +243,11 @@
       </span>
     </div>
     <nav>
+      <a href="#format">Format</a>
       <a href="#where">Location</a>
       <a href="#schedule">Schedule</a>
       <a href="#players">Who's In</a>
-      <a href="#bring">What to Bring</a>
+      <a href="#details">Details</a>
     </nav>
   </div>
 </header>
@@ -235,7 +257,7 @@
   <!-- HERO -->
   <section class="hero" style="padding-bottom: 8px;">
     <div class="eyebrow">Ultimate Frisbee · June 28 · UoG Rugby Fields</div>
-    <h1>The Community <em>Hat</em> Tournament</h1>
+    <h1>Ultimate at the <em>Good Games</em></h1>
     <p class="hero-sub">Three teams. One field. A full day of spirited play. Here's who's registered so far and how the day runs.</p>
   </section>
 
@@ -259,6 +281,30 @@
     </div>
   </section>
 
+  <!-- FORMAT -->
+  <section id="format" style="padding-top: 36px;">
+    <div class="section-head"><h2>How It Works</h2><div class="rule"></div></div>
+    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:24px; max-width:62ch;">A hat tournament means you sign up as an individual and we sort everyone into balanced teams, so you might be lining up with familiar faces or meeting new ones. Here's the shape of the day.</p>
+    <div class="format-grid">
+      <div class="fmt-card">
+        <div class="fmt-num">3</div>
+        <h3>Three Teams</h3>
+        <p>Everyone is drafted onto one of three squads (Mango, Lemon, and Guava), balanced for skill and experience so the games stay competitive and fun.</p>
+      </div>
+      <div class="fmt-card">
+        <div class="fmt-num">RR</div>
+        <h3>Round Robin</h3>
+        <p>Each team plays the other two in the morning. Win, lose, or draw, every game counts toward seeding for the afternoon final.</p>
+      </div>
+      <div class="fmt-card">
+        <div class="fmt-num">★</div>
+        <h3>Everyone Plays the Final</h3>
+        <p>The third-place team is split across the two finalists, so no one watches from the sideline. We finish the day all on the field together.</p>
+      </div>
+    </div>
+    <p style="color:var(--muted); font-size:1rem; margin-top:22px; max-width:62ch;">We'll run smaller lines through the round robin and scale up for the final once teams combine. Expect a healthy mix of playing time and rest, plus a few surprises to keep the day spirited.</p>
+  </section>
+
   <!-- MAP -->
   <section id="where" style="padding-top: 32px;">
     <div class="section-head"><h2>Where to Find Us</h2><div class="rule"></div></div>
@@ -278,9 +324,9 @@
     <div class="section-head"><h2>The Day</h2><div class="rule"></div></div>
     <div class="timeline">
       <div class="slot"><div class="time">10:00 – 10:10</div><div class="act">Welcome &amp; team intros</div></div>
-      <div class="slot major"><div class="time">10:10 – 10:55</div><div class="act">Round Robin · Game 1</div><div class="det">Mango vs Lemon &nbsp;·&nbsp; Guava rests</div></div>
-      <div class="slot major"><div class="time">10:55 – 11:40</div><div class="act">Round Robin · Game 2</div><div class="det">Mango vs Guava &nbsp;·&nbsp; Lemon rests</div></div>
-      <div class="slot major"><div class="time">11:40 – 12:25</div><div class="act">Round Robin · Game 3</div><div class="det">Lemon vs Guava &nbsp;·&nbsp; Mango rests</div></div>
+      <div class="slot major"><div class="time">10:10 – 10:55</div><div class="act">Round Robin · Game 1</div><div class="det">Mango vs Lemon</div></div>
+      <div class="slot major"><div class="time">10:55 – 11:40</div><div class="act">Round Robin · Game 2</div><div class="det">Mango vs Guava</div></div>
+      <div class="slot major"><div class="time">11:40 – 12:25</div><div class="act">Round Robin · Game 3</div><div class="det">Lemon vs Guava</div></div>
       <div class="slot"><div class="time">12:25 – 12:30</div><div class="act">Redraft for the final</div><div class="det">Third-place team splits across the two finalists, so everyone plays.</div></div>
       <div class="slot major"><div class="time">12:30 – 1:50</div><div class="act">The Final</div><div class="det">Top two combined teams, bigger lines, 80 minutes.</div></div>
       <div class="slot"><div class="time">1:50 – 2:00</div><div class="act">Wrap-up &amp; awards</div></div>
@@ -294,21 +340,20 @@
     <ul class="namelist" id="namelist"></ul>
   </section>
 
-  <!-- BRING -->
-  <section id="bring">
-    <div class="section-head"><h2>What to Bring</h2><div class="rule"></div></div>
+  <!-- FORMAT DETAILS -->
+  <section id="details">
+    <div class="section-head"><h2>The Details</h2><div class="rule"></div></div>
     <div class="bring-grid">
-      <div class="bring"><div class="bnum">1</div><h3>Cleats</h3></div>
-      <div class="bring"><div class="bnum">2</div><h3>Dark &amp; Light Jersey</h3></div>
-      <div class="bring"><div class="bnum">3</div><h3>Water!</h3></div>
-      <div class="bring"><div class="bnum">4</div><h3>Positive Attitude</h3></div>
+      <div class="bring"><div class="bnum">1</div><h3>Check In By 9:45</h3><p>Arrive a few minutes early to find your team and warm up. First pull is at 10:00 AM sharp.</p></div>
+      <div class="bring"><div class="bnum">2</div><h3>Round Robin Lines</h3><p>Morning games run smaller lines so everyone gets plenty of touches, with regular subbing so you stay fresh.</p></div>
+      <div class="bring"><div class="bnum">3</div><h3>Bigger Final</h3><p>Once teams combine for the final, we scale up the lines for a fuller, faster game to close out the day.</p></div>
+      <div class="bring"><div class="bnum">4</div><h3>Seeding The Final</h3><p>Round robin standings decide the top two. Wins matter, but so does point differential, so keep playing hard.</p></div>
     </div>
   </section>
 
   <!-- SURPRISE -->
   <section>
     <div class="surprise">
-      <div class="eyebrow">One more thing</div>
       <h2>Expect the Unexpected</h2>
       <p>We've got a twist planned that levels the playing field and rewards creativity over pure athleticism. Newer players will have their moments to shine. Come ready to play, laugh, and roll with whatever the day throws at you. You'll see.</p>
     </div>
@@ -347,7 +392,7 @@
     const el = document.getElementById('cd-hours');
     function tick(){
       const now = new Date();
-      const hrs = Math.max(0, Math.round((firstPull - now) / 3600000));
+      const hrs = Math.max(0, Math.floor((firstPull - now) / 3600000));
       if (el) el.textContent = hrs;
     }
     tick();
