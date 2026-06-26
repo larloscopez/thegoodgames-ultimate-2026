@@ -102,43 +102,40 @@
     color: var(--red); font-size: 1.05rem;
   }
 
-  /* ---------- Countdown ---------- */
-  .countdown {
-    display: flex; align-items: center; gap: 26px;
+  /* ---------- When ---------- */
+  .whenbox {
     background: var(--ink); color: var(--paper); border-radius: 16px;
-    padding: 26px 32px; margin-top: 28px; max-width: 760px;
+    padding: 28px 32px; margin-top: 28px; max-width: 760px;
   }
-  .cd-num {
-    font-family: 'Archivo', sans-serif; font-weight: 900; color: var(--lemon);
-    font-size: clamp(3rem, 9vw, 4.4rem); line-height: 0.9; flex-shrink: 0;
-  }
-  .cd-lead {
+  .when-tag {
     font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;
-    letter-spacing: 0.08em; font-weight: 700; font-size: 1.15rem; color: #fff;
+    letter-spacing: 0.18em; font-weight: 700; color: var(--lemon);
+    font-size: 0.95rem; margin-bottom: 10px;
   }
-  .cd-body p { color: #D8D3CC; margin-top: 6px; font-size: 1.02rem; }
-  .cd-body strong { color: var(--lemon); }
-  @media (max-width: 560px){ .countdown { flex-direction: column; align-items: flex-start; gap: 12px; text-align: left; } }
+  .whenbox p { font-size: 1.15rem; line-height: 1.55; color: #fff; }
+  .whenbox strong { color: #fff; }
+  .when-sub { color: #D8D3CC !important; font-size: 1rem !important; margin-top: 12px; }
+  .when-sub strong { color: var(--lemon); }
 
-  /* ---------- Format ---------- */
-  .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  @media (max-width: 760px){ .format-grid { grid-template-columns: 1fr; max-width: 480px; } }
-  .fmt-card {
-    background: var(--paper-2); border: 2px solid var(--ink); border-radius: 16px;
-    padding: 24px 24px 26px;
+  /* ---------- Format facts ---------- */
+  .fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 760px; }
+  @media (max-width: 560px){ .fact-grid { grid-template-columns: 1fr; } }
+  .fact {
+    background: var(--paper-2); border: 2px solid var(--ink); border-radius: 14px;
+    padding: 22px 24px; display: flex; gap: 18px; align-items: flex-start;
   }
-  .fmt-num {
+  .fact-k {
     font-family: 'Archivo', sans-serif; font-weight: 900; line-height: 1;
-    font-size: 1.4rem; color: #fff; background: var(--red);
-    min-width: 48px; height: 48px; padding: 0 12px; border-radius: 12px;
-    display: inline-grid; place-items: center; margin-bottom: 16px;
+    font-size: 1.5rem; color: #fff; background: var(--red);
+    border-radius: 12px; padding: 0 14px; height: 52px; min-width: 64px;
+    display: inline-grid; place-items: center; flex-shrink: 0;
   }
-  .fmt-card h3 {
+  .fact-v h3 {
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.03em; font-size: 1.35rem;
-    line-height: 1.05; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.03em; font-size: 1.3rem;
+    line-height: 1.05; margin-bottom: 6px;
   }
-  .fmt-card p { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+  .fact-v p { color: var(--muted); font-size: 0.98rem; line-height: 1.5; }
 
   /* ---------- Section ---------- */
   section { padding: 52px 0; }
@@ -150,6 +147,27 @@
   .section-head .rule { flex: 1; height: 3px; background: var(--ink); border-radius: 2px; }
 
   /* ---------- Schedule ---------- */
+  .sched-toggle { border: 2px solid var(--ink); border-radius: 14px; overflow: hidden; max-width: 760px; background: var(--paper-2); }
+  .sched-toggle summary {
+    cursor: pointer; list-style: none; padding: 16px 22px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    color: var(--ink); user-select: none;
+  }
+  .sched-toggle summary::-webkit-details-marker { display: none; }
+  .sched-toggle summary::after {
+    content: "+"; font-family: 'Archivo', sans-serif; font-weight: 900;
+    font-size: 1.6rem; line-height: 1; color: var(--red); transition: transform 0.2s;
+  }
+  .sched-toggle[open] summary::after { content: "−"; }
+  .sched-toggle summary:hover { background: var(--paper); }
+  .sched-toggle .timeline { margin: 6px 22px 24px; }
+  .sched-note {
+    margin: 0 22px 20px; padding-top: 16px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 0.98rem; line-height: 1.5; max-width: 62ch;
+  }
+  .sched-note strong { color: var(--red); }
   .timeline { border-left: 3px solid var(--line); margin-left: 8px; }
   .slot { position: relative; padding: 0 0 26px 28px; }
   .slot::before {
@@ -164,6 +182,18 @@
   }
   .slot .act { font-size: 1.08rem; font-weight: 500; }
   .slot .det { color: var(--muted); font-size: 0.98rem; }
+
+  /* ---------- Reveal note ---------- */
+  .reveal-note {
+    background: var(--paper-2); border: 2px solid var(--ink); border-left: 6px solid var(--red);
+    border-radius: 12px; padding: 18px 22px; margin-bottom: 26px; max-width: 760px;
+  }
+  .reveal-tag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;
+    color: var(--red); font-size: 0.95rem; margin-bottom: 6px;
+  }
+  .reveal-note p { color: var(--muted); font-size: 1.02rem; line-height: 1.5; }
 
   /* ---------- Name list ---------- */
   .namelist {
@@ -194,8 +224,8 @@
   }
   .bring .bnum {
     font-family: 'Archivo', sans-serif; font-weight: 900; line-height: 1;
-    font-size: 1.5rem; color: #fff; background: var(--red);
-    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0;
+    font-size: 1.25rem; color: #fff; background: var(--red);
+    min-width: 46px; height: 46px; padding: 0 12px; border-radius: 12px; display: inline-grid; place-items: center; flex-shrink: 0;
   }
   .bring h3 {
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
@@ -244,10 +274,8 @@
     </div>
     <nav>
       <a href="#format">Format</a>
+      <a href="#players">Teams</a>
       <a href="#where">Location</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#players">Who's In</a>
-      <a href="#details">Details</a>
     </nav>
   </div>
 </header>
@@ -256,7 +284,7 @@
 
   <!-- HERO -->
   <section class="hero" style="padding-bottom: 8px;">
-    <div class="eyebrow">Ultimate Frisbee · June 28 · UoG Rugby Fields</div>
+    <div class="eyebrow">Ultimate Frisbee · June 28 · University of Guelph</div>
     <h1>Ultimate at the <em>Good Games</em></h1>
     <p class="hero-sub">Three teams. One field. A full day of spirited play. Here's who's registered so far and how the day runs.</p>
   </section>
@@ -271,84 +299,62 @@
   </section>
 
   <!-- COUNTDOWN / TEASER -->
-  <section id="countdown" style="padding-top: 8px;">
-    <div class="countdown">
-      <div class="cd-num" id="cd-hours">48</div>
-      <div class="cd-body">
-        <div class="cd-lead">hours until the first pull</div>
-        <p>Can't wait that long? Drop by on <strong>Saturday</strong>, where we'll be running a learn-to-play clinic and fun disc games all day.</p>
-      </div>
+  <section id="when" style="padding-top: 8px;">
+    <div class="whenbox">
+      <div class="when-tag">When</div>
+      <p><strong>Sunday, June 28.</strong> First pull is at 10:00 AM, wrapping up around 2:00 PM. Plan to arrive by 9:45 to check in.</p>
+      <p class="when-sub">Can't wait until Sunday? Drop by on <strong>Saturday</strong>, where we'll be running a learn-to-play clinic and fun disc games all day.</p>
     </div>
   </section>
 
-  <!-- FORMAT -->
+  <!-- FORMAT & SCHEDULE -->
   <section id="format" style="padding-top: 36px;">
-    <div class="section-head"><h2>How It Works</h2><div class="rule"></div></div>
-    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:24px; max-width:62ch;">A hat tournament means you sign up as an individual and we sort everyone into balanced teams, so you might be lining up with familiar faces or meeting new ones. Here's the shape of the day.</p>
-    <div class="format-grid">
-      <div class="fmt-card">
-        <div class="fmt-num">3</div>
-        <h3>Three Teams</h3>
-        <p>Everyone is drafted onto one of three squads (Mango, Lemon, and Guava), balanced for skill and experience so the games stay competitive and fun.</p>
-      </div>
-      <div class="fmt-card">
-        <div class="fmt-num">RR</div>
-        <h3>Round Robin</h3>
-        <p>Each team plays the other two in the morning. Win, lose, or draw, every game counts toward seeding for the afternoon final.</p>
-      </div>
-      <div class="fmt-card">
-        <div class="fmt-num">★</div>
-        <h3>Everyone Plays the Final</h3>
-        <p>The third-place team is split across the two finalists, so no one watches from the sideline. We finish the day all on the field together.</p>
-      </div>
+    <div class="section-head"><h2>Format &amp; Schedule</h2><div class="rule"></div></div>
+    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:26px; max-width:64ch;">A hat tournament means you sign up solo and we draft everyone into three balanced teams: Mango, Lemon, and Guava. The morning is a round robin where each team plays the other two, and those standings seed an afternoon final. The third-place team splits across the two finalists, so everyone plays the final and no one watches from the sideline.</p>
+
+    <div class="fact-grid">
+      <div class="fact"><div class="fact-k">5v5</div><div class="fact-v"><h3>Round Robin</h3><p>Morning games are 5 on 5 with regular subbing. Lines will likely run 3 male-matching and 2 female-matching.</p></div></div>
+      <div class="fact"><div class="fact-k">6v6</div><div class="fact-v"><h3>The Final</h3><p>Teams combine and scale up to 6 on 6. Lines will likely run 4 male-matching and 2 female-matching.</p></div></div>
     </div>
-    <p style="color:var(--muted); font-size:1rem; margin-top:22px; max-width:62ch;">We'll run smaller lines through the round robin and scale up for the final once teams combine. Expect a healthy mix of playing time and rest, plus a few surprises to keep the day spirited.</p>
+    <p style="color:var(--muted); font-size:0.95rem; margin: 16px 0 30px; max-width:64ch;">Exact line sizes and gender ratios may shift slightly depending on signup numbers on the day.</p>
+
+    <details class="sched-toggle" open>
+      <summary>Full Game Schedule</summary>
+      <div class="timeline">
+        <div class="slot"><div class="time">10:00 – 10:10</div><div class="act">Welcome &amp; team intros</div></div>
+        <div class="slot major"><div class="time">10:10 – 10:55</div><div class="act">Round Robin · Game 1</div><div class="det">Mango vs Lemon</div></div>
+        <div class="slot major"><div class="time">10:55 – 11:40</div><div class="act">Round Robin · Game 2</div><div class="det">Mango vs Guava</div></div>
+        <div class="slot major"><div class="time">11:40 – 12:25</div><div class="act">Round Robin · Game 3</div><div class="det">Lemon vs Guava</div></div>
+        <div class="slot"><div class="time">12:25 – 12:30</div><div class="act">Redraft for the final</div><div class="det">Third-place team splits across the two finalists, so everyone plays.</div></div>
+        <div class="slot major"><div class="time">12:30 – 1:50</div><div class="act">The Final</div><div class="det">Top two combined teams, 6v6, 80 minutes.</div></div>
+        <div class="slot"><div class="time">1:50 – 2:00</div><div class="act">Wrap-up &amp; awards</div></div>
+      </div>
+      <p class="sched-note">Not on the field for a given game? Come cheer on your teammates, grab a snack, or relax. And whether you're playing Sunday or not, we'd love to see you at our opening welcome on <strong>Saturday at 11:00 AM</strong>.</p>
+    </details>
+  </section>
+
+  <!-- REGISTERED -->
+  <section id="players">
+    <div class="section-head"><h2>Teams</h2><div class="rule"></div></div>
+    <div class="reveal-note">
+      <span class="reveal-tag">Rosters drop Saturday night</span>
+      <p>This is a hat tournament, so teams get drafted from everyone who's registered. Full team rosters will be posted here Saturday night, the evening before we play. For now, here's the crew lining up to play.</p>
+    </div>
+    <ul class="namelist" id="namelist"></ul>
   </section>
 
   <!-- MAP -->
   <section id="where" style="padding-top: 32px;">
     <div class="section-head"><h2>Where to Find Us</h2><div class="rule"></div></div>
-    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:20px; max-width:60ch;">We'll be set up at the <strong style="color:var(--ink);">University of Guelph Rugby / Varsity Field</strong>, corner of East Ring Road and College Road. Look for The Good Games festival signage.</p>
+    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:20px; max-width:60ch;">We'll be set up at <strong style="color:var(--ink);">116 Arboretum Road</strong> at the University of Guelph. Look for The Good Games festival signage.</p>
     <div class="map-frame">
       <iframe
-        src="https://www.google.com/maps?q=University+of+Guelph+Varsity+Field,+East+Ring+Road,+Guelph,+ON&output=embed"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d783.9862382549182!2d-80.21885195226282!3d43.53373660203745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b9b307161c457%3A0x68c4a0ff3d64ef7e!2s116%20Arboretum%20Rd%2C%20Guelph%2C%20ON%20N1G%203B9!5e1!3m2!1sen!2sca!4v1782488735966!5m2!1sen!2sca"
         width="100%" height="100%" style="border:0;"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="University of Guelph Rugby Field"></iframe>
+        allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+        title="The Good Games location, Arboretum Road, Guelph"></iframe>
     </div>
-    <a class="map-link" href="https://maps.app.goo.gl/LhCreVkVByfe6XUA8" target="_blank" rel="noopener">Open in Google Maps →</a>
-  </section>
-
-  <!-- SCHEDULE -->
-  <section id="schedule">
-    <div class="section-head"><h2>The Day</h2><div class="rule"></div></div>
-    <div class="timeline">
-      <div class="slot"><div class="time">10:00 – 10:10</div><div class="act">Welcome &amp; team intros</div></div>
-      <div class="slot major"><div class="time">10:10 – 10:55</div><div class="act">Round Robin · Game 1</div><div class="det">Mango vs Lemon</div></div>
-      <div class="slot major"><div class="time">10:55 – 11:40</div><div class="act">Round Robin · Game 2</div><div class="det">Mango vs Guava</div></div>
-      <div class="slot major"><div class="time">11:40 – 12:25</div><div class="act">Round Robin · Game 3</div><div class="det">Lemon vs Guava</div></div>
-      <div class="slot"><div class="time">12:25 – 12:30</div><div class="act">Redraft for the final</div><div class="det">Third-place team splits across the two finalists, so everyone plays.</div></div>
-      <div class="slot major"><div class="time">12:30 – 1:50</div><div class="act">The Final</div><div class="det">Top two combined teams, bigger lines, 80 minutes.</div></div>
-      <div class="slot"><div class="time">1:50 – 2:00</div><div class="act">Wrap-up &amp; awards</div></div>
-    </div>
-  </section>
-
-  <!-- REGISTERED -->
-  <section id="players">
-    <div class="section-head"><h2>Who's In</h2><div class="rule"></div></div>
-    <p style="color:var(--muted); font-size:1.08rem; margin-bottom:24px; max-width:56ch;">The roster so far. Teams get drafted on game day. For now, here's the crew lining up to play.</p>
-    <ul class="namelist" id="namelist"></ul>
-  </section>
-
-  <!-- FORMAT DETAILS -->
-  <section id="details">
-    <div class="section-head"><h2>The Details</h2><div class="rule"></div></div>
-    <div class="bring-grid">
-      <div class="bring"><div class="bnum">1</div><h3>Check In By 9:45</h3><p>Arrive a few minutes early to find your team and warm up. First pull is at 10:00 AM sharp.</p></div>
-      <div class="bring"><div class="bnum">2</div><h3>Round Robin Lines</h3><p>Morning games run smaller lines so everyone gets plenty of touches, with regular subbing so you stay fresh.</p></div>
-      <div class="bring"><div class="bnum">3</div><h3>Bigger Final</h3><p>Once teams combine for the final, we scale up the lines for a fuller, faster game to close out the day.</p></div>
-      <div class="bring"><div class="bnum">4</div><h3>Seeding The Final</h3><p>Round robin standings decide the top two. Wins matter, but so does point differential, so keep playing hard.</p></div>
-    </div>
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=116+Arboretum+Rd+Guelph+ON+N1G+3B9" target="_blank" rel="noopener">Open in Google Maps →</a>
   </section>
 
   <!-- SURPRISE -->
@@ -357,6 +363,8 @@
       <h2>Expect the Unexpected</h2>
       <p>We've got a twist planned that levels the playing field and rewards creativity over pure athleticism. Newer players will have their moments to shine. Come ready to play, laugh, and roll with whatever the day throws at you. You'll see.</p>
     </div>
+  </section>
+
   <!-- PARTNER -->
   <section style="padding: 40px 0 20px; text-align:center;">
     <div style="font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.18em; font-weight:600; color:var(--muted); font-size:0.9rem; margin-bottom:18px;">In partnership with</div>
@@ -369,7 +377,7 @@
   <div class="wrap foot-row">
     <div>
       <div class="foot-big">See you on the field.</div>
-      <div class="note" style="color:#FBD; opacity:0.9;">Sunday, June 28 · University of Guelph Rugby Fields · 10 AM</div>
+      <div class="note" style="color:#FBD; opacity:0.9;">Sunday, June 28 · University of Guelph · 10 AM</div>
     </div>
     <div><a href="https://www.thegood.games">www.thegood.games →</a></div>
   </div>
@@ -386,18 +394,6 @@
     "Roselyn E", "Ryan K", "Simon T", "Terry L", "Wes A"
   ].sort();
 
-  // Live countdown to first pull: Sunday June 28 2026, 10:00 AM (America/Toronto, EDT = UTC-4)
-  (function(){
-    const firstPull = new Date('2026-06-28T10:00:00-04:00');
-    const el = document.getElementById('cd-hours');
-    function tick(){
-      const now = new Date();
-      const hrs = Math.max(0, Math.floor((firstPull - now) / 3600000));
-      if (el) el.textContent = hrs;
-    }
-    tick();
-    setInterval(tick, 60000);
-  })();
   const list = document.getElementById('namelist');
   players.forEach(name => {
     const li = document.createElement('li');
